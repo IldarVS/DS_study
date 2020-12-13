@@ -1,4 +1,8 @@
-alter table table_name 
-add count_column int
-GO
-update table_name set count_column = (select count(*) from table_name);  
+BEGIN TRY  
+     ALTER TABLE computer.dbo.Laptop DROP COLUMN count_column;
+END TRY  
+BEGIN CATCH
+--кода нет
+END CATCH;  
+ALTER TABLE computer.dbo.Laptop ADD count_column INT;
+UPDATE computer.dbo.Laptop SET count_column = (SELECT COUNT(*) FROM computer.dbo.Laptop);
